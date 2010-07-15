@@ -1,0 +1,9 @@
+Manifest
+README.md
+Rakefile
+TODO
+lib/rit_rails.rb
+lib/rit_rails/configuration.rb
+lib/rit_rails/errors.rb
+lib/rit_rails/plate.rb
+lib/rit_rails/rit_plate.rb
