@@ -2,8 +2,8 @@ Manifest
 README.md
 Rakefile
 TODO
-lib/rit_rails.rb
-lib/rit_rails/configuration.rb
-lib/rit_rails/errors.rb
-lib/rit_rails/plate.rb
-lib/rit_rails/rit_plate.rb
+lib/rit_client.rb
+lib/rit_client/configuration.rb
+lib/rit_client/errors.rb
+lib/rit_client/plate.rb
+lib/rit_client/rit_plate.rb

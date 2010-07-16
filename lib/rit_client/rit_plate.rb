@@ -1,4 +1,4 @@
-module RitRails
+module RitClient
   module RitPlate
 
     def self.included(controller)
@@ -7,9 +7,14 @@ module RitRails
     end
 
     module ClassMethods
-      def self.extended(controller)
-        controller.helper_method :rit_plate, :rit_plate!
-        controller.hide_action   :rit_palte, :rit_plate!
+      def self.extended(base)
+        # If ActionController and base is a kind of ActionController add helper methods and hide actions
+        if defined?(ActionController)
+          if base.kind_of?(ActionController)
+            base.helper_method :rit_plate, :rit_plate!
+            base.hide_action   :rit_palte, :rit_plate!
+          end
+        end
       end
     end
 
@@ -27,8 +32,8 @@ module RitRails
       # Returns:
       #   Returns content or empty (string)
       def rit_plate(layout_name, instance_name, plate_name)
-        RitRails::Plate.get(layout_name, instance_name, plate_name, nil) # FIXME: session[:preview_time]
-      # rescue # RitRails::ConnectionError, RitRails::NotFoundError # FIXME: rescue specific RitRails errors
+        RitClient::Plate.get(layout_name, instance_name, plate_name, nil) # FIXME: session[:preview_time]
+      # rescue # RitClient::ConnectionError, RitClient::NotFoundError # FIXME: rescue specific RitClient errors
       #         ''
       end
 
@@ -45,7 +50,7 @@ module RitRails
       # Returns:
       #   Returns content (string) or raises error if not found
       def rit_plate!(layout_name, instance_name, plate_name)
-        RitRails::Plate.get(layout_name, instance_name, plate_name, nil) # session[:preview_time]
+        RitClient::Plate.get(layout_name, instance_name, plate_name, nil) # session[:preview_time]
       end
     end
   end

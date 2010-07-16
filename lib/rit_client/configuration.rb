@@ -1,4 +1,4 @@
-module RitRails
+module RitClient
   class Configuration
     attr_accessor :rit_host, :rit_port, :rit_timeout, :rails_env
 
@@ -14,10 +14,10 @@ module RitRails
     attr_accessor :configuration
   end
 
-  # Configure Rit Rails something like 'config/initializers/rit_rails.rb'
+  # Configure Rit Rails something like 'config/initializers/rit_client.rb'
   
   # @example
-  #   RitRails.configure do |config|
+  #   RitClient.configure do |config|
   #     config.rit_host = 'rit.example.com'
   #     config.rit_port = 8080
   #     config.rit_timeout = 2

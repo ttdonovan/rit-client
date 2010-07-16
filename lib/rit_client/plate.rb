@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 require 'benchmark'
 
-module RitRails
+module RitClient
   class Plate
     class << self
 
@@ -18,7 +18,7 @@ module RitRails
       end
 
       def published_plate_path(layout_name, instance_name, plate_name, publish_time = nil)
-        if publish_time.nil? or RitRails.configuration.rails_env.call == 'production'
+        if publish_time.nil? or RitClient.configuration.rails_env.call == 'production'
           '/published/' + [layout_name, instance_name, plate_name].compact.join('/')
         else
           '/published_on/' + [layout_name, instance_name, plate_name, publish_time.to_i].compact.join('/')
@@ -30,12 +30,12 @@ module RitRails
       end
 
       def new_http
-        Net::HTTP.new(RitRails.configuration.rit_host, RitRails.configuration.rit_port)
+        Net::HTTP.new(RitClient.configuration.rit_host, RitClient.configuration.rit_port)
       end
 
       def configure_http(http)
         # Net::HTTP timeouts default to 60 seconds.
-        timeout = RitRails.configuration.rit_timeout
+        timeout = RitClient.configuration.rit_timeout
         http.open_timeout = timeout
         http.read_timeout = timeout
         http
